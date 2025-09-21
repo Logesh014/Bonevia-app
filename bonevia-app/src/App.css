@@ -252,3 +252,219 @@ body {
 .footer-links a:hover {
     text-decoration: underline;
 }
+/* === STYLES FOR FEATURED CATEGORIES === */
+
+.featured-categories-list {
+  display: flex;
+  justify-content: center;
+  gap: 50px; /* Space between items */
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  list-style: none;
+  border-bottom: 1px solid #eee; /* The faint gray line */
+}
+
+.category-item {
+  cursor: pointer;
+  text-align: center;
+}
+
+.category-item p {
+  color: #4CAF50; /* Muted green for inactive text */
+  transition: all 0.2s ease-in-out;
+}
+
+.category-item:hover p {
+  color: #333; /* Darken text on hover */
+}
+
+.category-icon {
+  width: 80px;   /* Increased size */
+  height: 80px;
+  border-radius: 12px; /* This makes the corners rounded */
+  background-color: #f0f0f0;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.category-item.active p {
+  color: #000; /* Black for active text */
+  font-weight: bold;
+}
+/* === STYLES FOR PRODUCT DETAIL PAGE === */
+
+.product-detail-page {
+  padding: 40px 0;
+}
+
+.product-detail-layout {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start; /* Aligns items to the top */
+}
+
+/* --- Left (Image) Column --- */
+.product-images-container {
+  flex: 1;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 20px; /* Distance from the top of the viewport when it sticks */
+  display: flex;
+  gap: 20px;
+}
+
+.product-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thumbnail-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.thumbnail-image.active {
+  border-color: var(--primary-color);
+}
+
+.product-main-image img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* --- Right (Details) Column --- */
+.product-details-container {
+  flex: 1;
+}
+
+.product-details-container h2 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.product-rating {
+  color: #777;
+  margin: 10px 0;
+}
+
+.product-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 20px 0;
+}
+
+.product-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn-add-to-cart, .btn-place-order {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px;
+  border: 2px solid var(--primary-color);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-add-to-cart {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-place-order {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.btn-add-to-cart:hover {
+  background-color: #45a049;
+}
+
+.product-features {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+
+.product-variants {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.variant-btn {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.variant-btn.active {
+  border-color: var(--primary-color);
+  background-color: #e8f5e9;
+  font-weight: bold;
+}
+
+.product-description-section, .faq-section, .reviews-section {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.faq-item {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.review {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.review-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+/* === STYLES FOR LOGIN TABS === */
+
+.login-tabs {
+  display: flex;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  flex: 1; /* Make buttons take up equal space */
+  padding: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  font-weight: bold;
+  border-bottom: 3px solid var(--primary-color);
+}
