@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { allProducts } from '../productData'; // <-- IMPORT FROM THE CENTRAL FILE
 
 // 1. UPDATE YOUR DATA TO INCLUDE AN 'images' ARRAY
 const allProducts = [

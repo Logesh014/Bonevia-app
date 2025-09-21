@@ -1,17 +1,24 @@
 // src/components/ProductCard.js
 
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. Make sure Link is imported
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({ id, image, title, description }) => {
-  // 2. We wrap the entire card content in a <Link> component.
-  // The 'to' prop creates the unique URL, like '/products/1'.
+const ProductCard = ({ id, image, title, description, price }) => { // Added description back
   return (
-    <Link to={`/products/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/products/${id}`} className="product-card-link">
       <div className="product-card">
-        <img src={image} alt={title} className="product-image" />
-        <h3 className="product-title">{title}</h3>
-        <p className="product-description">{description}</p>
+        <div className="product-image-wrapper">
+          <img
+            src={image}
+            alt={title}
+            className="product-image"
+          />
+        </div>
+        <div className="product-content">
+          <h3 className="product-title">{title}</h3>
+          <p className="product-description">{description}</p> {/* Re-added description */}
+          {price && <p className="product-price">${price}</p>}
+        </div>
       </div>
     </Link>
   );

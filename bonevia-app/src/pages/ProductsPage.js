@@ -1,34 +1,76 @@
 // src/pages/ProductsPage.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 
-// ADD A 'price' PROPERTY TO EACH PRODUCT
+// --- Sample Product Data ---
 const allProducts = [
-  { id: 1, price: 29.99, image: '/images/radiant-serum.png', title: 'Radiant Skin Serum', description: 'Revitalize your skin with our natural serum.'},
-  { id: 2, price: 19.99, image: '/images/herbal-detox.png', title: 'Herbal Detox Blend', description: 'Support your body\'s natural cleansing process.'},
-  { id: 3, price: 9.99, image: '/images/chia-seeds.png', title: 'Organic Chia Seeds', description: 'Boost your nutrition with these organic seeds.'},
-  { id: 4, price: 49.99, image: '/images/cleaning-kit.png', title: 'Eco-Friendly Cleaning Kit', description: 'Clean your home with our sustainable kit.'},
-  { id: 5, price: 7.99, image: '/images/thendral-soap.png', title: 'Thendral Herbal Soap', description: 'A refreshing and cleansing herbal soap bar.'},
-  { id: 6, price: 12.99, image: '/images/herbal-powder.png', title: 'Herbal Powder', description: 'A blend of natural herbs for health and wellness.'},
-  { id: 7, price: 8.99, image: '/images/turmeric.png', title: 'Turmeric', description: 'Organic turmeric powder with anti-inflammatory properties.'},
-  { id: 8, price: 59.99, image: '/images/natural-perfume.png', title: 'Natural Perfume', description: 'An elegant, all-natural fragrance.'},
+  { id: 1, title: 'Thendral Herbal Soap', description: 'Nourishing herbal soap.', category: 'Beauty', image: 'https://via.placeholder.com/300x200?text=Herbal+Soap' },
+  { id: 2, title: '16 Herbs Shika', description: 'Herbal hair wash powder.', category: 'Herbal Powders', image: 'https://via.placeholder.com/300x200?text=Herbal+Powder' },
+  { id: 3, title: 'Multani Mitti Powder', description: 'Natural clay for skin.', category: 'Health Foods', image: 'https://via.placeholder.com/300x200?text=Multani+Mitti' },
+  { id: 4, title: 'Eco-Friendly Cleaning Kit', description: 'Sustainable kit.', category: 'Organic Essentials', image: 'https://via.placeholder.com/300x200?text=Cleaning+Kit' },
+  { id: 5, title: 'Natural Perfume', description: 'An elegant fragrance.', category: 'Perfumes', image: 'https://via.placeholder.com/300x200?text=Natural+Perfume' },
+  { id: 6, title: 'Organic Face Mask', description: 'Rejuvenate your skin.', category: 'Beauty', image: 'https://via.placeholder.com/300x200?text=Face+Mask' },
+  { id: 7, title: 'Ayurvedic Hair Oil', description: 'Strengthens hair roots.', category: 'Herbal Powders', image: 'https://via.placeholder.com/300x200?text=Hair+Oil' },
+  { id: 8, title: 'Green Superfood Blend', description: 'Daily essential nutrients.', category: 'Health Foods', image: 'https://via.placeholder.com/300x200?text=Superfood' },
+  { id: 9, title: 'Bamboo Toothbrush Set', description: 'Sustainable oral care.', category: 'Organic Essentials', image: 'https://via.placeholder.com/300x200?text=Toothbrush' },
+];
+
+// --- Categories (matching the image) ---
+const categories = [
+  'Beauty',
+  'Herbal Powders',
+  'Health Foods',
+  'Organic Essentials',
+  'Perfumes',
 ];
 
 const ProductsPage = () => {
+  const [activeCategory, setActiveCategory] = useState(categories[0]); // Default to the first category
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    // Filter products based on the active category
+    const productsToShow = allProducts.filter(
+      (product) => product.category === activeCategory
+    );
+    setFilteredProducts(productsToShow);
+  }, [activeCategory]); // Re-run when activeCategory changes
+
   return (
-    <div className="container" style={{ paddingTop: '40px', paddingBottom: '40px' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Our Products</h1>
-      <div className="product-grid">
-        {allProducts.map((product, index) => (
-          <ProductCard
-            key={index}
-            id={product.id}
-            image={product.image}
-            title={product.title}
-            description={product.description}
-          />
-        ))}
+    <div className="products-page">
+      <div className="container">
+        <h1 className="products-heading">Our Products</h1>
+
+        {/* Category Filters */}
+        <div className="products-categories-filter">
+          {categories.map((category) => (
+            <span
+              key={category}
+              className={`category-filter-item ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </span>
+          ))}
+        </div>
+
+        {/* Product Grid */}
+        <div className="products-grid">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                image={product.image}
+                title={product.title}
+                description={product.description}
+              />
+            ))
+          ) : (
+            <p>No products found in this category.</p>
+          )}
+        </div>
       </div>
     </div>
   );
