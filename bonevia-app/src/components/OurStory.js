@@ -1,19 +1,50 @@
 // src/components/OurStory.js
-
 import React from 'react';
 
 const OurStory = () => {
-    return (
-        <div className="our-story">
-            <h2 className="our-story-heading">Our Story</h2>
-            <p className="our-story-paragraph">
-                At Bonevia, we believe in the power of nature to nurture and heal. Our journey began with a simple idea: to create products that are not only effective but also kind to the planet. We're committed to sustainable sourcing and transparent practices, ensuring that every product you use is crafted with the utmost care and respect for nature.
-            </p>
-            <p className="our-story-paragraph">
-                Our mission is to help you embrace nature's essence in your daily routine, providing high-quality, organic essentials that make a difference for both you and the environment. Thank you for joining us on this journey.
-            </p>
+  return (
+    <section className="our-story container">
+      {/* Main Title */}
+      <h2>Our Story</h2>
+      <p>
+        At Bonevia, we believe in the power of nature to nurture and heal. Our journey began with
+        a simple idea: to create products that are not only effective but also kind to the planet.
+      </p>
+
+      {/* Intro Image Section (two bottles) */}
+      <div className="story-image full-width">
+        <img src="/images/our-story.png" alt="Our Story Products" />
+      </div>
+
+      {/* Philosophy Section */}
+      <div className="story-section">
+        <div className="story-text">
+          <h3>Our Philosophy</h3>
+          <p>
+            Every product is designed to enhance your natural well-being with local ingredients
+            sourced responsibly. We value transparency, integrity, and sustainability.
+          </p>
         </div>
-    );
+        <div className="story-image">
+          <img src="/images/philosophy.png" alt="Our Philosophy" />
+        </div>
+      </div>
+
+      {/* Ethical Practices Section */}
+      <div className="story-section reverse">
+        <div className="story-text">
+          <h3>Ethical Practices</h3>
+          <p>
+            Our commitment extends to ethical treatment of workers, cruelty-free testing,
+            and eco-friendly packaging, ensuring our products are safe for both you and the planet.
+          </p>
+        </div>
+        <div className="story-image">
+          <img src="/images/ethical.png" alt="Ethical Practices" />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default OurStory;

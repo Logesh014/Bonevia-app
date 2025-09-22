@@ -1,13 +1,27 @@
 // src/components/ProfileDropdown.js
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
-import { AiOutlineCreditCard } from 'react-icons/ai'; // Example: Add an icon for Payment
+import { AiOutlineCreditCard } from 'react-icons/ai';
+import { useAuth } from '../context/AuthContext';
 
 const ProfileDropdown = ({ user }) => {
+    const navigate = useNavigate();
+    const { logout } = useAuth();
+
+    const handleLogoutClick = () => {
+        logout();
+        navigate('/');
+    };
+
+    // The function below applies the 'dropdown-item' class, and 'active' if needed
+    const getNavLinkClass = ({ isActive }) => {
+        return isActive ? 'dropdown-item active' : 'dropdown-item';
+    };
+
     return (
         <div className="profile-dropdown">
             <div className="user-info">
@@ -17,29 +31,29 @@ const ProfileDropdown = ({ user }) => {
             </div>
             <ul className="dropdown-menu">
                 <li>
-                    <Link to="/profile">
+                    <NavLink to="/profile" className={getNavLinkClass}>
                         <CgProfile className="menu-icon" />
                         My Profile
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/orders">
+                    <NavLink to="/orders" className={getNavLinkClass}>
                         <AiOutlineCreditCard className="menu-icon" />
                         My Orders
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/settings">
+                    <NavLink to="/settings" className={getNavLinkClass}>
                         <IoSettingsOutline className="menu-icon" />
                         Settings
-                    </Link>
+                    </NavLink>
                 </li>
                 <hr />
                 <li>
-                    <Link to="/logout">
+                    <button onClick={handleLogoutClick} className="logout-btn">
                         <RiLogoutBoxRLine className="menu-icon" />
                         Logout
-                    </Link>
+                    </button>
                 </li>
             </ul>
         </div>

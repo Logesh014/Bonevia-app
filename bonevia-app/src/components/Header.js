@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
+import { useAuth } from '../context/AuthContext';
 import { FaUserCircle } from 'react-icons/fa';
 import { CiSearch } from 'react-icons/ci';
 import { BsBag } from 'react-icons/bs';
 import ProfileDropdown from './ProfileDropdown';
+import AuthDropdown from './AuthDropdown';
 
 const user = {
     name: "John Doe",
@@ -15,6 +17,8 @@ const user = {
 };
 
 const Header = () => {
+    // The isLoggedIn and logout variables are now used
+    const { isLoggedIn, logout } = useAuth();
     const { cartItems } = useCart();
     const { setSearchTerm } = useSearch();
     const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -28,7 +32,7 @@ const Header = () => {
         setIsSearchVisible(!isSearchVisible);
         if (isSearchVisible) {
             setInput('');
-            setSearchTerm(''); 
+            setSearchTerm('');
         }
     };
 
@@ -40,7 +44,7 @@ const Header = () => {
         e.preventDefault();
         setSearchTerm(input);
         setIsSearchVisible(false);
-        // Removed the navigate('/') line to stop redirecting to the homepage.
+        navigate('/');
     };
 
     return (
@@ -65,7 +69,7 @@ const Header = () => {
                     </div>
                     <div className="profile-container">
                         <FaUserCircle className="icon profile-icon" onClick={toggleProfileDropdown} />
-                        {isProfileDropdownVisible && <ProfileDropdown user={user} />}
+                        {isProfileDropdownVisible && (isLoggedIn ? <ProfileDropdown user={user} onLogout={logout} /> : <AuthDropdown />)}
                     </div>
                 </div>
             </div>
